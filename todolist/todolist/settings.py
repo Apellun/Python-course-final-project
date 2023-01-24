@@ -84,18 +84,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 ALLOWED_HOSTS = ['*']
 
-if DEBUG == False:
-    DATABASES = {
-                'default': {
-                'ENGINE': env('DB_ENGINE'),
-                'NAME': env('DB_NAME'),
-                'USER': env('DB_USER'),
-                'PASSWORD': env('DB_PASSWORD'),
-                'HOST': env('DB_HOST'),
-                'PORT': env('DB_PORT'),
-                'DATABASE_URL': env('DATABASE_URL')
-            }
-        }
+if not DEBUG:
+    DATABASES = {'default':  env.db()}
 else:
     DATABASES = {
         'default': {
